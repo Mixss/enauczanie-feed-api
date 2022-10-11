@@ -2,6 +2,7 @@ package esovisco.enauczaniefeed.controller;
 
 import esovisco.enauczaniefeed.domain.Message;
 import esovisco.enauczaniefeed.services.MessageService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +21,10 @@ public class MessageController {
     @RequestMapping("/all")
     public List<Message> getAllMessages(){
         return messageService.getAllMessages();
+    }
+
+    @RequestMapping("/newest/{number}")
+    public List<Message> getNumberOfMessages(@PathVariable int number){
+        return messageService.getNumberOfMessages(number);
     }
 }

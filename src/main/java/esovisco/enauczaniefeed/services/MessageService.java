@@ -4,7 +4,10 @@ import esovisco.enauczaniefeed.domain.Message;
 import esovisco.enauczaniefeed.repositories.MessageRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MessageService {
@@ -21,5 +24,23 @@ public class MessageService {
 
     public void saveMessage(Message message){
         messageRepository.save(message);
+    }
+
+    public List<Message> getNumberOfMessages(int number) {
+        Comparator<Message> dateComparator = Comparator.comparing(Message::getDate);
+        List<Message> fetchedMessages = messageRepository.findAll();
+        List<Message> result = new ArrayList<>();
+
+        for(int i=0; i<number; i++){
+            Optional<Message> messageOptional = fetchedMessages.stream().max(dateComparator);
+            if(messageOptional.isEmpty()) break;
+
+            Message latestMessage = messageOptional.get();
+            fetchedMessages.remove(latestMessage);
+            result.add(latestMessage);
+
+        }
+
+        return result;
     }
 }

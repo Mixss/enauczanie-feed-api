@@ -13,6 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name = "messages")
 public class Message {
 
     public Message(String message, String author, Date date) {

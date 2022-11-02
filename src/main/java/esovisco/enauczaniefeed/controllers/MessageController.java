@@ -28,14 +28,9 @@ public class MessageController {
         return messageService.getAllMessages();
     }
 
-//    @RequestMapping(value = "/newest/{number}")
-//    public List<Message> getNumberOfMessages(@PathVariable int number){
-//        return messageService.getNumberOfMessages(number);
-//    }
-
     @RequestMapping(value = "/newest/{number}")
-    public String getNumberOfMessages(@PathVariable int number){
-        return new Gson().toJson(messageService.getNumberOfMessages(number));
+    public List<Message> getNumberOfMessages(@PathVariable int number){
+        return messageService.getNumberOfMessages(number);
     }
 
     @PostMapping("/add")

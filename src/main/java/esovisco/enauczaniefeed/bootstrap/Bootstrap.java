@@ -24,7 +24,8 @@ public class Bootstrap implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println("Running in dev profile!");
         Message m1 = new Message("Pierwsza wiadomość", "Mixss", new Date(122, 9, 8));
-        Message m2 = new Message("Druga wiadomość", "Mixss", new Date(122, 9, 9));
+        Message m2 = new Message("Druga wiadomość", "Mixss", new Date(122, 9, 9),
+                "https://media.discordapp.net/attachments/914906630993363015/1029509371585118318/unknown.png");
         Message m3 = new Message("Trzecia wiadomość", "Mixss", new Date(122, 9, 10));
 
         messageService.saveMessage(m1);

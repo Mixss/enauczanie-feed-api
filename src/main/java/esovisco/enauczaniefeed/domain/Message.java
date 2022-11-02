@@ -20,6 +20,14 @@ public class Message {
         this.message = message;
         this.author = author;
         this.date = date;
+        this.image = null;
+    }
+
+    public Message(String message, String author, Date date, String image) {
+        this.message = message;
+        this.author = author;
+        this.date = date;
+        this.image = image;
     }
 
     @Id
@@ -32,4 +40,6 @@ public class Message {
     private String author;
 
     private Date date;
+
+    private String image;
 }

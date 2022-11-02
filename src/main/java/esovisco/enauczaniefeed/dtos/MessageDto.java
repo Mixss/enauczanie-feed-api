@@ -17,6 +17,13 @@ public class MessageDto {
         this.date = date;
     }
 
+    public MessageDto(String message, String author, Date date, String image) {
+        this.message = message;
+        this.author = author;
+        this.date = date;
+        this.image = image;
+    }
+
     private Long id;
 
     private String message;
@@ -24,4 +31,6 @@ public class MessageDto {
     private String author;
 
     private Date date;
+
+    private String image;
 }

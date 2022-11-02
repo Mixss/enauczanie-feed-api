@@ -45,4 +45,14 @@ public class MessageController {
             return (ResponseEntity<MessageDto>) ResponseEntity.status(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PostMapping("/delete/{id}")
+    public List<String> deleteMessage(@PathVariable Long id){
+        try {
+            messageService.deleteMessageById(id);
+            return List.of("Message deleted successfully");
+        } catch (Exception e){
+            return List.of("Message deletion failed!"); // TODO not working
+        }
+    }
 }

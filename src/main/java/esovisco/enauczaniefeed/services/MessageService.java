@@ -26,7 +26,7 @@ public class MessageService {
         messageRepository.save(message);
     }
 
-    public List<Message> getNumberOfMessages(int number) {
+    public List<Message> getNewestMessages(int number) {
         Comparator<Message> dateComparator = Comparator.comparing(Message::getDate);
         List<Message> fetchedMessages = messageRepository.findAll();
         List<Message> result = new ArrayList<>();
@@ -46,5 +46,15 @@ public class MessageService {
 
     public void deleteMessageById(Long id){
         messageRepository.delete(messageRepository.getById(id));
+    }
+
+    public List<Message> getOlderMessages(int number, int countFrom) {
+        try{
+            return getNewestMessages(countFrom+number).subList(countFrom, countFrom+number);
+        }
+        catch(IndexOutOfBoundsException e){
+            List<Message> result = getNewestMessages(countFrom+number);
+            return result.subList(countFrom, result.size());
+        }
     }
 }

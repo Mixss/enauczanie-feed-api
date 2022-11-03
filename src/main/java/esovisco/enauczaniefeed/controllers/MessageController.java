@@ -1,12 +1,10 @@
 package esovisco.enauczaniefeed.controllers;
 
-import com.google.gson.Gson;
 import esovisco.enauczaniefeed.domain.Message;
 import esovisco.enauczaniefeed.dtos.MessageDto;
 import esovisco.enauczaniefeed.dtos.MessageDtoMapper;
 import esovisco.enauczaniefeed.services.MessageService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +28,12 @@ public class MessageController {
 
     @RequestMapping(value = "/newest/{number}")
     public List<Message> getNumberOfMessages(@PathVariable int number){
-        return messageService.getNumberOfMessages(number);
+        return messageService.getNewestMessages(number);
+    }
+
+    @RequestMapping(value = "/older/{from}/{number}")
+    public List<Message> getOlderMessages(@PathVariable int from, @PathVariable int number){
+        return messageService.getOlderMessages(number, from);
     }
 
     @PostMapping("/add")
